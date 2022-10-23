@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState, UIEvent, useRef } from "react";
+import React, { ChangeEvent, useState, UIEvent, useRef, useEffect } from "react";
 import Head from "next/head";
 import { useDebounce, useInfiniteQuery } from "../../hooks";
 import { searchRepos } from "../../services/api";
@@ -19,6 +19,8 @@ import {
 } from "./styles";
 import FilterBar from "./components/FilterBar";
 import Footer from "./components/Footer";
+import { useToast } from "../../hooks/useToast";
+import { ApiResponseError } from "../../services/errors/ApiResponseError";
 
 type TSearchRepoProps = {
   title: string;
@@ -29,8 +31,9 @@ export default function SearchRepo({ title }: TSearchRepoProps) {
   const debouncedText = useDebounce(text, 500);
   const params = { q: debouncedText };
   const ref = useRef<HTMLDivElement>(null);
+  const toast = useToast();
 
-  const { data, isLoading, hasNext, fetchNext } = useInfiniteQuery<
+  const { data, isLoading, hasNext, fetchNext, error } = useInfiniteQuery<
     TSearchRepos,
     TSearchReposParams
   >({
@@ -60,6 +63,12 @@ export default function SearchRepo({ title }: TSearchRepoProps) {
       e.currentTarget.clientHeight;
     isBottom && hasNext && fetchNext();
   };
+
+  useEffect(() => {
+    if (!error || !(error instanceof ApiResponseError)) return;
+
+    toast("error", error.message);
+  }, [error]);
 
   return (
     <>

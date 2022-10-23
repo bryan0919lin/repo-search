@@ -119,3 +119,8 @@ type TSearchRepoItemResponse = {
   is_template?: boolean;
   web_commit_signoff_required?: boolean;
 };
+
+export type TSearchRepoErrResponse = {
+  documentation_url: string;
+  message: string;
+}

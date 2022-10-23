@@ -9,15 +9,17 @@ type TUseQueryParam<T, P> = {
 export function useInfiniteQuery<TData, TParam>({ queryKey, queryFn, getNextPageParam }: TUseQueryParam<TData, TParam>) {
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState<TData[]>();
+  const [error, setError] = useState<Error>();
 
   const handleQuery = useCallback((pageParam?: TParam) => {
     setIsLoading(true);
     queryFn(pageParam)
       .then((d) => {
         setData((prev) => !prev ? [d] : [...prev, d]); 
+        setError(undefined);
       })
       .catch((e) => {
-        console.log(e);
+        setError(e);
       })
       .finally(() => {
         setIsLoading(false);
@@ -43,5 +45,6 @@ export function useInfiniteQuery<TData, TParam>({ queryKey, queryFn, getNextPage
     data,
     hasNext: !!getNextPageParam(data?.slice(-1)[0], data),
     fetchNext,
+    error,
   };
 }

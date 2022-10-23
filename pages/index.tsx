@@ -1,5 +1,10 @@
-import SearchRepo from "../container/SearchRepo/SearchRepo";
+import { SearchRepo } from "../containers/SearchRepo";
+import { ToastProvider } from "../providers";
 
 export default function Home() {
-  return <SearchRepo title="Search repo from GitHub" />
+  return (
+    <ToastProvider>
+      <SearchRepo title="Search repo from GitHub" />
+    </ToastProvider>
+  );
 }

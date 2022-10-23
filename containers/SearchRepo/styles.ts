@@ -19,7 +19,8 @@ export const repoListStyle: CSSProperties = {
 };
 
 export const footerStyle: CSSProperties = {
+  flex: "0 1 32px",
   display: "flex",
   justifyContent: "center",
-  flex: "0 1 20px",
+  alignContent: "center",
 };

@@ -1,1 +1,5 @@
-export { TSearchRepos, TSearchRepoItem, TSearchReposParams } from "./searchRepos/types";
+export type {
+  TSearchRepos,
+  TSearchRepoItem,
+  TSearchReposParams,
+} from "./searchRepos/types";
