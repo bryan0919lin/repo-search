@@ -1,7 +1,9 @@
 import React, { CSSProperties, UIEvent, useCallback, useRef } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
+import { useForceUpdate } from "../../hooks/";
 import { TSearchRepos } from "../../services/api/types";
+import { containerStyle, innerContainerStyle } from "./styles";
 
 type TRepoListProps = CSSProperties & {
   items: TSearchRepos["items"];
@@ -22,11 +24,7 @@ export default function RepoList({
   const [scrollTop, setScrollTop] = useState(0);
   const [offsetHeight, setOffsetHeight] = useState(0);
   const itemRefs = useRef<HTMLDivElement[]>([]);
-
-  const [_, setCount] = useState(0);
-  const forceUpdate = () => {
-    setCount((prev) => prev + 1);
-  };
+  const forceUpdate = useForceUpdate();
 
   const getItemTop = (idx: number) => {
     let itemTop = 0;
@@ -58,8 +56,8 @@ export default function RepoList({
     if (mainContainer && offsetHeight === 0) {
       setOffsetHeight(mainContainer.clientHeight);
     }
-    
-    forceUpdate()
+
+    forceUpdate();
   }, [items, scrollTop, offsetHeight]);
 
   return (
@@ -88,7 +86,6 @@ export default function RepoList({
           };
 
           const isItemVisible =
-            // itemRefs.current.length === items.length &&
             (style.top as number) + finalItemHeight >= scrollTop &&
             (style.top as number) < scrollTop + offsetHeight;
 
@@ -107,18 +104,3 @@ export default function RepoList({
     </div>
   );
 }
-
-function isNumber(
-  itemHeight: TRepoListProps["itemHeight"]
-): itemHeight is number {
-  return !(typeof itemHeight === "function");
-}
-
-const containerStyle: CSSProperties = {
-  overflowX: "hidden",
-  overflowY: "auto",
-};
-
-const innerContainerStyle: CSSProperties = {
-  position: "relative",
-};

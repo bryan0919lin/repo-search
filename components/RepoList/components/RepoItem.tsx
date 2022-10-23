@@ -1,6 +1,18 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import { CSSProperties } from "react";
 import { TSearchRepoItem } from "../../../services/api/types";
+import { convertISODateStr } from "../../../utils/dateConverter";
+import { StarIcon, CircleIcon } from "../../Icons";
+import { getLanguageIconColor } from "./helper";
+import {
+  itemRootStyle,
+  itemBlockStyle,
+  itemContentStyle,
+  itemHeaderStyle,
+  itemDescriptionStyle,
+  itemFooterStyle,
+  itemFooterChildStyle,
+} from "./styles";
 
 export type TRepoItemProps = {
   index: number;
@@ -12,36 +24,48 @@ export type TRepoItemProps = {
 const RepoItem = React.forwardRef<HTMLDivElement, TRepoItemProps>(
   (props, ref) => {
     const { index, style, data, setItemHeight } = props;
-    const itemRootStyle: CSSProperties = {
-      width: "100%",
-      paddingTop: 12,
-      paddingBottom: 12,
-      ...style,
-    };
-
-    const itemBlockStyle: CSSProperties = {
-      borderRadius: 4,
-      backgroundColor: "#ffffff",
-      boxShadow:
-        "0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%)",
-    };
-
-    const itemContentStyle: CSSProperties = {
-      padding: 12,
-    };
-
     const item = data?.[index];
 
     return (
-      <div ref={ref} style={itemRootStyle}>
+      <div
+        ref={ref}
+        style={{
+          ...itemRootStyle,
+          ...style,
+        }}
+      >
         <div style={itemBlockStyle}>
           <div style={itemContentStyle}>
-            <div>
+            <div style={itemHeaderStyle}>
               <a href={item?.htmlUrl} target="_blank">
                 {item?.fullName}
               </a>
             </div>
-            <div>{item?.description}</div>
+
+            <div style={itemDescriptionStyle}>{item?.description}</div>
+
+            <div style={itemFooterStyle}>
+              <div style={itemFooterChildStyle}>
+                <StarIcon style={{ marginRight: 2 }} />
+                <a href={item?.stargazersUrl} target="_blank">
+                  {item?.stargazersCount}
+                </a>
+              </div>
+
+              <div style={itemFooterChildStyle}>
+                <CircleIcon
+                  style={{
+                    marginRight: 2,
+                    backgroundColor: getLanguageIconColor(item?.language),
+                  }}
+                />
+                {item?.language}
+              </div>
+
+              <div style={itemFooterChildStyle}>
+                Updated on {convertISODateStr(item?.pushedAt)}
+              </div>
+            </div>
           </div>
         </div>
       </div>

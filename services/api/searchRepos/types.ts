@@ -17,6 +17,7 @@ export type TSearchRepoItem = {
   htmlUrl: string;
   description: string;
   stargazersCount: number;
+  stargazersUrl: string;
   language: string;
   pushedAt: string;
   topics: string[];

@@ -41,6 +41,7 @@ function normalizeSearchRepoResponse(
       htmlUrl: repoItem.html_url,
       description: repoItem.description ?? "",
       stargazersCount: repoItem.stargazers_count,
+      stargazersUrl: repoItem.stargazers_url,
       language: repoItem.language || "",
       pushedAt: repoItem.pushed_at,
       topics: Array.from(repoItem.topics || []),
