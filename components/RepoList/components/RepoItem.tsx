@@ -3,6 +3,7 @@ import { CSSProperties } from "react";
 import { TSearchRepoItem } from "../../../services/api/types";
 import { convertISODateStr } from "../../../utils/dateConverter";
 import { StarIcon, CircleIcon } from "../../Icons";
+import SafeLink from "../../SafeLink";
 import { getLanguageIconColor } from "./helper";
 import {
   itemRootStyle,
@@ -23,7 +24,7 @@ export type TRepoItemProps = {
 
 /**
  * Display each GitHub repo info.
- * 
+ *
  * @return forward ref to set componet ref to parent component
  */
 const RepoItem = React.forwardRef<HTMLDivElement, TRepoItemProps>(
@@ -43,9 +44,9 @@ const RepoItem = React.forwardRef<HTMLDivElement, TRepoItemProps>(
         <div style={itemBlockStyle}>
           <div style={itemContentStyle}>
             <div style={itemHeaderStyle} data-testid="item-header">
-              <a href={item?.htmlUrl} target="_blank">
+              <SafeLink href={item?.htmlUrl} isOpenInNewTab>
                 {item?.fullName}
-              </a>
+              </SafeLink>
             </div>
 
             <div style={itemDescriptionStyle}>{item?.description}</div>
@@ -53,9 +54,9 @@ const RepoItem = React.forwardRef<HTMLDivElement, TRepoItemProps>(
             <div style={itemFooterStyle}>
               <div style={itemFooterChildStyle}>
                 <StarIcon style={{ marginRight: 2 }} />
-                <a href={item?.stargazersUrl} target="_blank">
+                <SafeLink href={item?.stargazersUrl} isOpenInNewTab>
                   {item?.stargazersCount}
-                </a>
+                </SafeLink>
               </div>
 
               <div style={itemFooterChildStyle}>
