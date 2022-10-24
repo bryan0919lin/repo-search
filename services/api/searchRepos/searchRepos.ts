@@ -37,7 +37,7 @@ function validateParam({ q }: TSearchReposParams) {
   return true;
 }
 
-function normalizeSearchRepoResponse(
+export function normalizeSearchRepoResponse(
   params: TSearchReposParams,
   response: TSearchReposResponse
 ): TSearchRepos {

@@ -7,7 +7,7 @@ type TToastProps = {
   msg: string;
 };
 
-const colorMap: Record<TNotificationType, string> = {
+export const colorMap: Record<TNotificationType, string> = {
   success: "#34c240",
   waring: "#fa9f47",
   error: "#d64242",

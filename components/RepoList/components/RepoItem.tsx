@@ -33,6 +33,7 @@ const RepoItem = React.forwardRef<HTMLDivElement, TRepoItemProps>(
           ...itemRootStyle,
           ...style,
         }}
+        role="item"
       >
         <div style={itemBlockStyle}>
           <div style={itemContentStyle}>
