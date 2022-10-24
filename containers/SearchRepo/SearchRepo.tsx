@@ -1,4 +1,10 @@
-import React, { ChangeEvent, useState, UIEvent, useRef, useEffect } from "react";
+import React, {
+  ChangeEvent,
+  useState,
+  UIEvent,
+  useRef,
+  useEffect,
+} from "react";
 import Head from "next/head";
 import { useDebounce, useInfiniteQuery } from "../../hooks";
 import { searchRepos } from "../../services/api";
@@ -27,14 +33,14 @@ type TSearchRepoProps = {
 };
 
 /**
- * This component is for the whole home page to have the ability for search 
+ * This component is for the whole home page to have the ability for search
  * repo from GitHub by query string, then display result with infinite scroll
  * to get next page appended to result list.
- * 
+ *
  * The search repo api of GitHub still have other params, such as sort.
  * Will implement the entire functionalities in the future.
- * 
- * @returns search repo page impelmentation 
+ *
+ * @returns search repo page impelmentation
  */
 export default function SearchRepo({ title }: TSearchRepoProps) {
   const [text, setText] = useState("");
@@ -68,9 +74,10 @@ export default function SearchRepo({ title }: TSearchRepoProps) {
   };
 
   const handleScroll = (e: UIEvent<HTMLElement>) => {
-    const isBottom =
-      e.currentTarget.scrollHeight - e.currentTarget.scrollTop ===
-      e.currentTarget.clientHeight;
+    const scrollSize = Math.floor(
+      e.currentTarget.scrollHeight - e.currentTarget.scrollTop
+    );
+    const isBottom = scrollSize === e.currentTarget.clientHeight;
     isBottom && hasNext && fetchNext();
   };
 
