@@ -12,6 +12,13 @@ export const ToastContext = createContext({
   close: () => {},
 } as TToastContext);
 
+/**
+ * This provider is used to control the display of {@link Toast}.
+ * To display Toast correctly, please put this provider to the top of App.
+ * 
+ * @see {@link Toast}
+ * @returns 
+ */
 export default function ToastProvider(props) {
   const [isOpen, setIsOpen] = useState(false);
   const [notificationType, setNotificationType] =

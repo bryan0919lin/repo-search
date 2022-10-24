@@ -26,6 +26,16 @@ type TSearchRepoProps = {
   title: string;
 };
 
+/**
+ * This component is for the whole home page to have the ability for search 
+ * repo from GitHub by query string, then display result with infinite scroll
+ * to get next page appended to result list.
+ * 
+ * The search repo api of GitHub still have other params, such as sort.
+ * Will implement the entire functionalities in the future.
+ * 
+ * @returns search repo page impelmentation 
+ */
 export default function SearchRepo({ title }: TSearchRepoProps) {
   const [text, setText] = useState("");
   const debouncedText = useDebounce(text, 500);

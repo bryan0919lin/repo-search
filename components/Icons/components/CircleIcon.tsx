@@ -1,5 +1,10 @@
 import { TIcon } from "../types";
 
+/**
+ * This component is to render a filled circle icon, and implemented by pure css.
+ * 
+ * @returns a filled circle icon that can change size by css style 
+ */
 export default function CircleIcon({ style }: TIcon) {
   return (
     <div

@@ -14,6 +14,20 @@ export const colorMap: Record<TNotificationType, string> = {
   info: "#0090e0",
 };
 
+/**
+ * Display messages with limited notification type.
+ * Each notification type has its own background color to remind user
+ * the category of specified message.
+ * 
+ * To use this component, we need to use {@link ToastProvider} to the root
+ * of App.
+ * 
+ * This is the first version of implementation, and will suppourt displaying
+ * multiple messages in the future. 
+ * 
+ * @see {@link ToastProvider}
+ * @returns fixed position toast
+ */
 export default function Toast({ notificationType, msg }: TToastProps) {
   const { close } = useContext(ToastContext);
 

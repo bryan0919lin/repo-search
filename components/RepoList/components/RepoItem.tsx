@@ -21,6 +21,11 @@ export type TRepoItemProps = {
   setItemHeight?: (index: number, height: number) => void;
 };
 
+/**
+ * Display each GitHub repo info.
+ * 
+ * @return forward ref to set componet ref to parent component
+ */
 const RepoItem = React.forwardRef<HTMLDivElement, TRepoItemProps>(
   (props, ref) => {
     const { index, style, data, setItemHeight } = props;

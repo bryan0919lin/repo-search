@@ -1,5 +1,10 @@
 import { TIcon } from "../types";
 
+/**
+ * This component is to render a filled star icon, and implemented by pure css.
+ * 
+ * @returns a filled star icon that can change size by css style.
+ */
 export default function StarIcon({ style }: TIcon) {
   return (
     <div

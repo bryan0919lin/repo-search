@@ -13,6 +13,18 @@ type TRepoListProps = CSSProperties & {
   children: ({ index, style, data, ref }) => JSX.Element;
 };
 
+/**
+ * Display each GitHub repo info in this component.
+ * To prevent UI performance issue, I use a simple virtulized 
+ * implemntation so that we can deal with large amount of data.
+ * 
+ * The basic concept is to only render visible items. For example,
+ * if we have 1,000,000 to display in this list, we just render the visble items
+ * by calculating the height of each items, and scroll offset to find out which
+ * items should be visble and should be rendered.
+ *
+ * @returns a list that can accept large amount of data
+ */
 export default function RepoList({
   items,
   itemHeight,
@@ -57,6 +69,9 @@ export default function RepoList({
       setOffsetHeight(mainContainer.clientHeight);
     }
 
+    // For the first render, we set each item height as the same value 
+    // from props, then we can get real item height by ref. Therefore,
+    // we need to force render to get correct display.
     forceUpdate();
   }, [items, scrollTop, offsetHeight]);
 
