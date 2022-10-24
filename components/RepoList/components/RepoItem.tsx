@@ -37,7 +37,7 @@ const RepoItem = React.forwardRef<HTMLDivElement, TRepoItemProps>(
       >
         <div style={itemBlockStyle}>
           <div style={itemContentStyle}>
-            <div style={itemHeaderStyle}>
+            <div style={itemHeaderStyle} data-testid="item-header">
               <a href={item?.htmlUrl} target="_blank">
                 {item?.fullName}
               </a>

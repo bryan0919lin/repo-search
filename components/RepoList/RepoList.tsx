@@ -62,6 +62,7 @@ export default function RepoList({
 
   return (
     <div
+      data-testid="repo-list"
       ref={mainContainerRef}
       style={{
         ...style,

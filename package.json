@@ -4,10 +4,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test": "jest"
+    "test": "jest",
+    "test:e2e": "playwright test e2e"
   },
   "jest": {
-    "testEnvironment": "jsdom"
+    "testEnvironment": "jsdom",
+    "testPathIgnorePatterns": ["e2e"]
   },
   "dependencies": {
     "next": "latest",
@@ -17,6 +19,7 @@
   "devDependencies": {
     "@babel/preset-env": "^7.19.4",
     "@babel/preset-typescript": "^7.18.6",
+    "@playwright/test": "^1.27.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@types/jest": "^29.2.0",
