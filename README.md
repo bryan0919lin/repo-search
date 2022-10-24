@@ -14,7 +14,9 @@ If you want to develop this App, you can launch this App in dev mode through `np
 To launch this App in production mode, you need to run `npm run build` to build artifacts in advance.
 
 ### Almost done
-When you run `npm run dev` or `npm run build && npm start`, you can visit this App in `http://localhost:3000`. Here is the preview when you succeed visit this App:
+When you run `npm run dev` or `npm run build && npm start`, you can visit this App in `http://localhost:3000`. Here is the preview when you succeed to visit this App:
+
+![preview](https://user-images.githubusercontent.com/31603372/197498543-4a9d12fa-cf2a-4a65-8cdc-d38da5820ab7.gif)
 
 ### npm start
 Ensure you have already build artifact by `npm run build` before you start this App with `npm start`
